@@ -1,0 +1,15 @@
+[package]
+name = "Hello_Musl_World"
+author = "slundi"
+version = "1.0.0"
+edition = "2021"
+homepage = "https://github.com/slundi/rust-musl-docker-buld-multi-arch"
+
+[source.vendored-sources]
+directory = "vendor"
+
+[dependencies]
+regex = "1.5"
+
+[target.'cfg(all(target_env = "musl", target_pointer_width = "64"))'.dependencies.jemallocator]
+version = "0.3"
