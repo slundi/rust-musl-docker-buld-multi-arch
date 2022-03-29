@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 env:
   IMAGE: slundi/ratioup
@@ -22,7 +22,7 @@ jobs:
       with:
         script: |
           const dockerImageNames = [];
-          if (context.payload.ref === 'refs/heads/master') {
+          if (context.payload.ref === 'refs/heads/main') {
             dockerImageNames.push('slundi/ratioup:latest');
           }
           const matched = context.payload.ref.match(/^refs\/tags\/(.*)$/);
