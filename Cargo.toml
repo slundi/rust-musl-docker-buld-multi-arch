@@ -9,7 +9,7 @@ homepage = "https://github.com/slundi/rust-musl-docker-buld-multi-arch"
 directory = "vendor"
 
 [dependencies]
-regex = "1.5"
+quote = "1"
 
 [target.'cfg(all(target_env = "musl", target_pointer_width = "64"))'.dependencies.jemallocator]
 version = "0.3"
