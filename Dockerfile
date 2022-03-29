@@ -10,7 +10,7 @@ ARG TARGETPLATFORM
 
 RUN rustc --version &&  rustup --version && cargo --version
 
-WORKDIR /code
+WORKDIR /home/rust
 
 COPY . ./
 RUN cargo build --release
@@ -19,7 +19,7 @@ RUN cargo build --release
 FROM scratch
 
 # copy server binary from build stage
-COPY --from=builder /code/target/release/Hello_Musl_World /app/Hello_Musl_World
+COPY --from=builder /home/rust/target/release/Hello_Musl_World /app/Hello_Musl_World
 
 LABEL author="Slundi"
 LABEL url="https://github.com/slundi/rust-musl-docker-buld-multi-arch"
