@@ -1,6 +1,16 @@
-FROM --platform=linux/amd64 rust:latest as builder
+FROM rust:latest as builder
 
 ARG TARGETPLATFORM
+
+RUN echo $TARGETPLATFORM
+RUN case $TARGETPLATFORM in\
+      linux/amd64)  rust_target="x86_64-unknown-linux-musl";;\
+      linux/arm64)  rust_target="aarch64-unknown-linux-musl";;\
+      linux/arm/v7) rust_target="armv7-unknown-linux-musleabihf";;\
+      linux/arm/v6) rust_target="arm-unknown-linux-musleabi";;\
+      *)            exit 1;;\
+    esac &&\
+    echo ${rust_target} 
 
 RUN apt update && apt install -y musl-tools
 #RUN rustup target add x86_64-unknown-linux-musl aarch64-unknown-linux-musl armv7-unknown-linux-musleabi armv7-unknown-linux-musleabihf
