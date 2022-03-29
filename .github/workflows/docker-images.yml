@@ -22,7 +22,7 @@ jobs:
         script: |
           const dockerImageNames = [];
           if (context.payload.ref === 'refs/heads/main') {
-            dockerImageNames.push('slundi/ratioup:latest');
+            dockerImageNames.push('slundi/rust-musl-docker-build-multi-arch:latest');
           }
           const matched = context.payload.ref.match(/^refs\/tags\/(.*)$/);
           if (matched !== null) {
