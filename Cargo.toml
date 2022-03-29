@@ -11,5 +11,5 @@ directory = "vendor"
 [dependencies]
 quote = "1"
 
-[target.'cfg(all(target_env = "musl", target_pointer_width = "64"))'.dependencies.jemallocator]
-version = "0.3"
+#[target.'cfg(all(target_env = "musl", target_pointer_width = "64"))'.dependencies.jemallocator]
+#version = "0.3"
