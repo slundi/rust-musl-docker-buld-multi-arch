@@ -48,7 +48,7 @@ jobs:
 #        push: ${{ steps.create-docker-image-names.outputs.docker-push }}
 #        tags: ${{ steps.create-docker-image-names.outputs.docker-image-names }}
     - name: Build and push ARM64
-      run: docker buildx --output "type=image,push=true" build --platform=linux/arm64
+      run: docker buildx build --output "type=image,push=true" --platform=linux/arm64
 #      with:
 #        context: .
 #        platform: linux/arm64
