@@ -4,14 +4,15 @@ ARG TARGETPLATFORM
 
 RUN rustc --version &&  rustup --version && cargo --version
 
+WORKDIR /code
+
 #RUN apt update && apt install -y musl-tools
 #RUN rustup target add x86_64-unknown-linux-musl aarch64-unknown-linux-musl armv7-unknown-linux-musleabi armv7-unknown-linux-musleabihf
 
 # Create a dummy project and build the app's dependencies.
 # If the Cargo.toml or Cargo.lock files have not changed,
 # we can use the docker build cache and skip these (typically slow) steps.
-RUN USER=root cargo new Hello_Musl_World
-WORKDIR /code
+RUN USER=root cargo init Hello_Musl_World
 COPY Cargo.toml Cargo.lock ./
 RUN case $TARGETPLATFORM in\
       linux/amd64)  rust_target="x86_64-unknown-linux-musl";;\
